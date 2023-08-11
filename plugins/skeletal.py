@@ -321,7 +321,7 @@ questions = [
 ]
 
 
-@bot.on_message(filters.command("skeletal"))
+@Client.on_message(filters.command("skeletal"))
 async def quiz(_, message):
     global current_question_index
     question_data = questions[current_question_index]
@@ -344,7 +344,7 @@ async def quiz(_, message):
     reply_markup = InlineKeyboardMarkup(keyboard)
     await message.reply_text(question_text, reply_markup=reply_markup)
 
-@bot.on_callback_query(filters.regex(r"^answer:"))
+@Client.on_callback_query(filters.regex(r"^answer:"))
 async def answer(_, query: CallbackQuery):
     selected_option = query.data.split(":")[1]
     question = next(q for q in questions if selected_option in q["options"])
@@ -362,7 +362,7 @@ async def answer(_, query: CallbackQuery):
     else:
         query.answer("Invalid selection. Please try again.")
 
-@bot.on_callback_query(filters.regex(r"^(previous|next)$"))
+@Client.on_callback_query(filters.regex(r"^(previous|next)$"))
 async def navigation_button(_, query: CallbackQuery):
     global current_question_index
 
