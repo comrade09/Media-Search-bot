@@ -347,7 +347,7 @@ async def answer(_, query: CallbackQuery):
             response_text = f" The correct answer is {question['correct_option']}."
 
         await query.answer(response_text)
-        await query.message.reply_text(f"Question: {question['Explanation']}\n\nCorrect Answer: {question['correct_option']}")
+        await query.message.reply_text(f"Question: {question['explanation']}\n\n So Correct Answer: {question['correct_option']}")
     else:
         query.answer("Invalid selection. Please try again.")
 
