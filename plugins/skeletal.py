@@ -378,5 +378,5 @@ async def navigation_button(_, query: CallbackQuery):
     await query.answer()
 
     # Re-send the question with updated index
-    await quiz(_, query.message)
+    await show_question(query.message)
 
