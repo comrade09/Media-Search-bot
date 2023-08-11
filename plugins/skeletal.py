@@ -320,10 +320,13 @@ questions = [
 
 ]
 
-current_question_index = 0
+
 
 @Client.on_message(filters.command("skeletal"))
 async def quiz(_, message):
+    global current_question_index  # Add this line
+    current_question_index = 0  # Reset the index to 0
+    
     question_data = questions[current_question_index]
     question_text = question_data["question"]
     options = question_data["options"]
@@ -343,6 +346,7 @@ async def quiz(_, message):
     
     reply_markup = InlineKeyboardMarkup(keyboard)
     await message.reply_text(question_text, reply_markup=reply_markup)
+
 
 @Client.on_callback_query(filters.regex(r"^answer:"))
 async def answer(_, query: CallbackQuery):
