@@ -11,7 +11,7 @@ import random
 
 
 questions = [
-    {
+        {
             "question": "What is the process by which sperms are produced called?",
             "options": ["A. Ovulation", "B. Spermatogenesis", "C. Fertilization", "D. Meiosis"],
             "correct_option": "B",
@@ -95,12 +95,12 @@ questions = [
             "correct_option": "C",
             "explanation": "Bone marrow, found within certain bones, is responsible for the production of blood cells through a process called hematopoiesis."
         },
-            {
+       {
                 "question": "Which protein provides elasticity and extensibility to muscle fibers?",
                 "options": ["A. Actin", "B. Myosin", "C. Collagen", "D. Tropomyosin"],
                 "correct_option": "C",
                 "explanation": "Collagen is a fibrous protein that provides elasticity and extensibility to muscle fibers and connective tissues. It contributes to the strength and flexibility of muscles."
-            },
+      },
             {
                 "question": "What is the functional unit of contraction in a muscle fiber?",
                 "options": ["A. Sarcomere", "B. Myofibril", "C. Endomysium", "D. Perimysium"],
@@ -320,6 +320,7 @@ questions = [
 
 ]
 
+current_question_index = 0
 
 @Client.on_message(filters.command("skeletal"))
 async def quiz(_, message):
