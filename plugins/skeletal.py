@@ -324,7 +324,6 @@ current_question_index = 0
 
 @Client.on_message(filters.command("skeletal"))
 async def quiz(_, message):
-    current_question_index
     question_data = questions[current_question_index]
     question_text = question_data["question"]
     options = question_data["options"]
