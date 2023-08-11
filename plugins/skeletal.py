@@ -321,21 +321,30 @@ questions = [
 ]
 
 
-@Client.on_message(filters.command("skeletal"))
+@bot.on_message(filters.command("skeletal"))
 async def quiz(_, message):
-    random_question = random.choice(questions)  # You can use a random number generator for a truly random question
-    question_text = random_question["question"]
-    options = random_question["options"]
+    global current_question_index
+    question_data = questions[current_question_index]
+    question_text = question_data["question"]
+    options = question_data["options"]
 
     keyboard = []
     for option in options:
         button = InlineKeyboardButton(text=option, callback_data=f"answer:{option}")
         keyboard.append([button])
 
+    navigation_buttons = []
+    if current_question_index > 0:
+        navigation_buttons.append(InlineKeyboardButton("Previous", callback_data="previous"))
+    if current_question_index < len(questions) - 1:
+        navigation_buttons.append(InlineKeyboardButton("Next", callback_data="next"))
+
+    keyboard.append(navigation_buttons)
+    
     reply_markup = InlineKeyboardMarkup(keyboard)
     await message.reply_text(question_text, reply_markup=reply_markup)
 
-@Client.on_callback_query(filters.regex(r"^answer:"))
+@bot.on_callback_query(filters.regex(r"^answer:"))
 async def answer(_, query: CallbackQuery):
     selected_option = query.data.split(":")[1]
     question = next(q for q in questions if selected_option in q["options"])
@@ -344,11 +353,26 @@ async def answer(_, query: CallbackQuery):
         if selected_option == question["correct_option"]:
             response_text = "Correct! Well done."
         else:
-            response_text = f" The correct answer is {question['correct_option']}."
+            response_text = f"The correct answer is {question['correct_option']}."
 
         await query.answer(response_text)
-        await query.message.reply_text(f"Question: {question['explanation']}\n\n So Correct Answer: {question['correct_option']}")
+        await query.message.reply_text(
+            f"Question: {question['explanation']}\n\nCorrect Answer: {question['correct_option']}"
+        )
     else:
         query.answer("Invalid selection. Please try again.")
 
+@bot.on_callback_query(filters.regex(r"^(previous|next)$"))
+async def navigation_button(_, query: CallbackQuery):
+    global current_question_index
+
+    if query.data == "previous":
+        current_question_index = max(0, current_question_index - 1)
+    elif query.data == "next":
+        current_question_index = min(len(questions) - 1, current_question_index + 1)
+
+    await query.answer()
+
+    # Re-send the question with updated index
+    await quiz(_, query.message)
 
