@@ -324,7 +324,7 @@ questions = [
 
 current_question_index = 0
 
-@Cleint.on_message(filters.command("skeletal"))
+@Client.on_message(filters.command("skeletal"))
 async def quiz(_, message):
     global current_question_index
     current_question_index = 0
