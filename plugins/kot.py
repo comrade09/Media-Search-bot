@@ -104,12 +104,13 @@ async def send_question(client, chat_id, question):
     explanation = question.get("explanation", None)
 
     poll_message = await client.send_poll(
-        chat_id,
+        chat_id="-1001814803421",
         question=question_text,
         options=poll_options,
-        type="QUIZ",
-        correct_option_id=correct_option,
+        type="quiz",
         is_anonymous=False,
+        correct_option_id=correct_option
+        
         
     )
 
