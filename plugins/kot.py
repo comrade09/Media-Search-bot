@@ -10,7 +10,7 @@ import asyncio
 import random
 
 
-group_chat_id = -1001814803421
+
 questions = [
     {
         "question": "What is the capital of France?",
@@ -45,12 +45,13 @@ def send_question(client, chat_id, question):
         client.send_message(chat_id, explanation)
 
     return poll_message
-
+    
+group_chat_id = -1001814803421
 # Function to send quiz questions at intervals
 def send_quiz_questions():
   
         for question in questions:
-            send_question(Client, group_chat_id, question)
+            send_question(Client, chat_id, question)
             time.sleep(10)  # Wait for 10 seconds before sending the next question
 
 # Call the function to send quiz questions
