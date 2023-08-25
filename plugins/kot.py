@@ -100,7 +100,7 @@ async def send_question(client, chat_id, question):
     options = question["options"]
     question_text = question["question"]
     correct_option = question["correct_option"]
-
+    learn = "ath"
     poll_options = [f"{index+1}. {option}" for index, option in enumerate(options)]
     explanation = question.get("explanation", None)
 
@@ -109,6 +109,7 @@ async def send_question(client, chat_id, question):
         question=question_text,
         options=poll_options,
         type="QUIZ",
+        explanation = learn,
         is_anonymous=False,
         correct_option_id =correct_option
         
