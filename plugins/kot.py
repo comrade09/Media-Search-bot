@@ -31,10 +31,11 @@ questions = [
     # Add more questions here
 ]
 
- # Create a Pyrogram client
+# Create a Pyrogram client
+app = Client("quiz_bot")  
 
 # Function to send a quiz question
-def send_question(client, chat_id, question):
+async def send_question(client, chat_id, question):
     options = question["options"]
     question_text = question["question"]
     explanation = question.get("explanation", None)  # Get the explanation, if provided
@@ -42,23 +43,23 @@ def send_question(client, chat_id, question):
     poll_options = [option for option in options]
     correct_option = question["correct_option"]  # 0-indexed correct option
 
-    poll_message = client.send_poll(chat_id, question=question_text, options=poll_options, type="quiz", correct_option_id=correct_option)
+    poll_message = await client.send_poll(chat_id, question=question_text, options=poll_options, type="quiz", correct_option_id=correct_option)
 
     if explanation:
         # Wait for 30 seconds
-        time.sleep(4)
+        await asyncio.sleep(30)
 
         # Send the explanation as a message
-        client.send_message(chat_id, explanation)
+        await client.send_message(chat_id, explanation)
 
     return poll_message
 
 # Function to send quiz questions at intervals
-def send_quiz_questions():
-    with Bot:
+async def send_quiz_questions():
+    async with Bot:
         for question in questions:
-            send_question(Bot, chat_id, question)
-            time.sleep(10)  # Wait for 10 seconds before sending the next question
+            await send_question(Bot, chat_id, question)
+            await asyncio.sleep(10)  # Wait for 10 seconds before sending the next question
 
 # Call the function to send quiz questions
-send_quiz_questions()
+asyncio.run(send_quiz_questions())
