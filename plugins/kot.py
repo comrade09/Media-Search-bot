@@ -18,7 +18,9 @@ import time
 from pyrogram import Client, filters
 import time
 
-@Client.on_message(filters.command("quiz"))
+
+
+@Client.on_message(filters.command("quiz") & filters.user(5496035221))
 async def start_quiz(client, message):
     chat_id = message.chat.id
     await client.send_message(chat_id, "Quiz has started! I will send you a question every 30 seconds. Answer with the correct option.")
@@ -62,4 +64,4 @@ async def send_question(client, chat_id, question):
 
     if explanation:
         await asyncio.sleep(1)  # Wait for 30 seconds
-        await client.send_message(chat_id, f"{explanation} \n bot by @python_itachi" ,  reply_to_message_id=poll_message.message_id)
+        await client.send_message(chat_id, f"{explanation} \n bot by @python_itachi" ,  reply_to_message = poll_message)
