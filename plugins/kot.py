@@ -9,6 +9,9 @@ import os
 import asyncio
 import random
 
+from pyrogram import Client, filters
+import time
+
 chat_id = -1001814803421
 
 questions = [
@@ -27,6 +30,9 @@ questions = [
     # Add more questions here
 ]
 
+app = Bot() # Create a Pyrogram client
+
+# Function to send a quiz question
 def send_question(client, chat_id, question):
     options = question["options"]
     question_text = question["question"]
@@ -45,13 +51,12 @@ def send_question(client, chat_id, question):
         client.send_message(chat_id, explanation)
 
     return poll_message
-    
-chat_id = -1001814803421
+
 # Function to send quiz questions at intervals
 def send_quiz_questions():
-  
+    with app:
         for question in questions:
-            send_question(Client, chat_id, question)
+            send_question(app, chat_id, question)
             time.sleep(10)  # Wait for 10 seconds before sending the next question
 
 # Call the function to send quiz questions
