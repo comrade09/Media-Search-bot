@@ -46,7 +46,7 @@ def send_question(client, chat_id, question):
 
     return poll_message
     
-group_chat_id = -1001814803421
+chat_id = -1001814803421
 # Function to send quiz questions at intervals
 def send_quiz_questions():
   
