@@ -32,7 +32,7 @@ questions = [
 ]
 
 # Create a Pyrogram client
-app = Client("quiz_bot")  
+
 
 # Function to send a quiz question
 async def send_question(client, chat_id, question):
