@@ -64,4 +64,4 @@ async def send_question(client, chat_id, question):
 
     if explanation:
         await asyncio.sleep(1)  # Wait for 30 seconds
-        await client.send_message(chat_id, f"{explanation} \n bot by @python_itachi" ,  reply_to_message = poll_message)
+        await client.send_message(chat_id, f"{explanation} \n bot by @python_itachi" 
