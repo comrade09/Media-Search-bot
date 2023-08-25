@@ -120,6 +120,8 @@ async def send_question(client, chat_id, question):
         options=poll_options,
         type="quiz",
         correct_option_id=correct_option
+        is_anonymous=False
+        
     )
 
     if explanation:
