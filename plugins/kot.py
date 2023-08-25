@@ -25,8 +25,8 @@ async def start_quiz(client, message):
 
     while True:
         for question in questions:
-        await send_question(client, chat_id, question)
-        await asyncio.sleep(30)
+            await send_question(client, chat_id, question)
+            await asyncio.sleep(30)
 
 questions = [
     {
