@@ -43,7 +43,67 @@ questions = [
         "correct_option": 1,
         "explanation": "Mars is known as the 'Red Planet' due to its reddish appearance."
     },
-    # Add more questions here
+    {
+        "question": "Which one is a primary sex organ?",
+        "options": ["Scrotum", "Penis", "Testis", "Prostate gland"],
+        "correct_option": 3,
+        "explanation": "The primary sex organ in males is the testis, which produces sperm."
+    },
+    {
+        "question": "Secondary sex organ is",
+        "options": ["Testis", "Ovary", "Beard", "Vas deferens"],
+        "correct_option": 4,
+        "explanation": "Secondary sex organs are those structures that develop during puberty and are not directly involved in gamete production."
+    },
+    {
+        "question": "Which acid occurs in semen?",
+        "options": ["Citric acid", "Malic acid", "Oxaloacetic acid", "Succinic acid"],
+        "correct_option": 1,
+        "explanation": "Citric acid is one of the components found in semen."
+    },
+    {
+        "question": "Vasa deferens is cut for",
+        "options": ["Female sterilization","Male sterilization","Both of the above","Temporary sterilization"],
+        "correct_option": 2,
+        "explanation": "Vasa deferens is cut in male sterilization to prevent the passage of sperm."
+    },
+    {
+        "question": "The function of seminal fluid is -",
+        "options": ["sexual attraction","to provide stability to egg","to provide a medium for the movement of sperms","to provide acidic medium"],
+        "correct_option": 3,
+        "explanation": "Seminal fluid provides a medium for the movement of sperm cells and provides nutrients to support their viability."
+    },
+    {
+        "question": "Vasa efferentia connect the",
+        "options": [ "testes with epididymis", "kidneys with cloaca", "testes with urinogenital duct", "None of the above"],
+        "correct_option": 1,
+        "explanation": "Vasa efferentia connect the testes to the epididymis, facilitating the transport of sperm cells."
+    },
+    {
+        "question": "In mammals, failure of testes to descend into scrotum is known as",
+        "options": ["Paedogenesis","Castration","Cryptorchidism","Impotency"],
+        "correct_option": 3,
+        "explanation": "Cryptorchidism refers to the condition in which the testes do not descend into the scrotum, affecting fertility."
+    },
+    {
+        "question": "Common duct formed by union of vas deferens and duct from seminal vesicle is",
+        "options": ["urethra","tunica-vasculosa","ejaculatory duct","spermatic duct"],
+        "correct_option": 3,
+        "explanation": "The common duct formed by the union of vas deferens and the duct from seminal vesicle is known as the ejaculatory duct."
+    },
+    {
+        "question": "Scrotum communicates with abdominal cavity through",
+        "options": ["urethra","inguinal canal","vas deferens","epididymis"],
+        "correct_option": 2,
+        "explanation": "The scrotum communicates with the abdominal cavity through the inguinal canal."
+    },
+    {
+        "question": "Tunica albuinea is the covering around",
+        "options": ["Oviduct","Testis","Kidney","Heart"],
+        "correct_option": 2,
+        "explanation": "Tunica albuginea is the fibrous covering around the testis."
+    },
+
 ]
 
 async def send_question(client, chat_id, question):
@@ -64,4 +124,4 @@ async def send_question(client, chat_id, question):
 
     if explanation:
         await asyncio.sleep(1)  # Wait for 30 seconds
-        await client.send_message(chat_id, f"{explanation} \n bot by @python_itachi" 
+        await client.send_message(chat_id, f"{explanation} \n bot coded by @python_itachi" )
