@@ -9,7 +9,7 @@ import os
 import asyncio
 import random
 
-
+chat_id = -1001814803421
 
 questions = [
     {
