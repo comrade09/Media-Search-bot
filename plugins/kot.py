@@ -6,7 +6,7 @@ from pyrogram.enums import ParseMode
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , CallbackQuery , Message
 import os
-from bot import app
+
 import asyncio
 import random
 
