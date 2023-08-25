@@ -20,7 +20,7 @@ import time
 
 
 
-@Client.on_message(filters.command("quiz") & filters.user(5496035221))
+@Client.on_message(filters.command("quiz") & filters.user(1828345056))
 async def start_quiz(client, message):
     chat_id = message.chat.id
     await client.send_message(chat_id, "Quiz has started! I will send you a question every 30 seconds. Answer with the correct option.")
@@ -31,18 +31,7 @@ async def start_quiz(client, message):
             await asyncio.sleep(3600)
 
 questions = [
-    {
-        "question": "What is the capital of France?",
-        "options": ["Paris", "London", "Berlin", "Madrid"],
-        "correct_option": 0,
-        "explanation": "The capital of France is Paris."
-    },
-    {
-        "question": "Which planet is known as the 'Red Planet'?",
-        "options": ["Venus", "Mars", "Jupiter", "Saturn"],
-        "correct_option": 1,
-        "explanation": "Mars is known as the 'Red Planet' due to its reddish appearance."
-    },
+    
     {
         "question": "Which one is a primary sex organ?",
         "options": ["Scrotum", "Penis", "Testis", "Prostate gland"],
