@@ -6,6 +6,7 @@ from pyrogram.enums import ParseMode
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , CallbackQuery , Message
 import os
+from bot import Bot
 import asyncio
 import random
 
@@ -54,9 +55,9 @@ def send_question(client, chat_id, question):
 
 # Function to send quiz questions at intervals
 def send_quiz_questions():
-    with app:
+    with Bot:
         for question in questions:
-            send_question(app, chat_id, question)
+            send_question(Bot, chat_id, question)
             time.sleep(10)  # Wait for 10 seconds before sending the next question
 
 # Call the function to send quiz questions
