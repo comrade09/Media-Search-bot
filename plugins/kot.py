@@ -48,7 +48,7 @@ def send_question(client, chat_id, question):
 
 # Function to send quiz questions at intervals
 def send_quiz_questions():
-    
+group_chat_id = -1001814803421   
         for question in questions:
             send_question(Client, group_chat_id, question)
             time.sleep(10)  # Wait for 10 seconds before sending the next question
