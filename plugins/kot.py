@@ -9,6 +9,7 @@ import os
 
 import asyncio
 import random
+import json
 
 from pyrogram import Client, filters
 import time
@@ -106,10 +107,10 @@ async def send_question(client, chat_id, question):
     poll_message = await client.send_poll(
         chat_id="-1001814803421",
         question=question_text,
-        options=poll_options,
+        options=json.dumps(poll_options),
         type="quiz",
         is_anonymous=False,
-        correct_option_id=correct_option
+        correct_option_id =correct_option
         
         
     )
