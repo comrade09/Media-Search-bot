@@ -30,7 +30,7 @@ questions = [
     # Add more questions here
 ]
 
-app = Bot() # Create a Pyrogram client
+ # Create a Pyrogram client
 
 # Function to send a quiz question
 def send_question(client, chat_id, question):
