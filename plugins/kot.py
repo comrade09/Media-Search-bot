@@ -107,7 +107,7 @@ async def send_question(client, chat_id, question):
         chat_id,
         question=question_text,
         options=poll_options,
-        type="quiz",
+        type="QUIZ",
         correct_option_id=correct_option,
         is_anonymous=False,
         
