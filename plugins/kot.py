@@ -26,7 +26,7 @@ async def start_quiz(client, message):
     while True:
         for question in questions:
             await send_question(client, chat_id, question)
-            await asyncio.sleep(30)
+            await asyncio.sleep(2)
 
 questions = [
     {
@@ -61,5 +61,5 @@ async def send_question(client, chat_id, question):
     )
 
     if explanation:
-        await asyncio.sleep(30)  # Wait for 30 seconds
+        await asyncio.sleep(1)  # Wait for 30 seconds
         await client.send_message(chat_id, explanation)
