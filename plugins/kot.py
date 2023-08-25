@@ -13,7 +13,15 @@ import random
 from pyrogram import Client, filters
 import time
 
-chat_id = -1001814803421
+@Client.on_message(filters.command("quiz"))
+async def start_quiz(client, message):
+    chat_id = message.chat.id
+    await client.send_message(chat_id, "Quiz has started! I will send you a question every 30 seconds. Answer with the correct option.")
+
+    while True:
+        question = random.choice(questions)
+        await send_question(client, chat_id, question)
+        await asyncio.sleep(30)
 
 questions = [
     {
@@ -31,35 +39,23 @@ questions = [
     # Add more questions here
 ]
 
-# Create a Pyrogram client
-
-
-# Function to send a quiz question
 async def send_question(client, chat_id, question):
     options = question["options"]
     question_text = question["question"]
-    explanation = question.get("explanation", None)  # Get the explanation, if provided
+    correct_option = question["correct_option"]
 
-    poll_options = [option for option in options]
-    correct_option = question["correct_option"]  # 0-indexed correct option
+    poll_options = [f"{index+1}. {option}" for index, option in enumerate(options)]
+    explanation = question.get("explanation", None)
 
-    poll_message = await client.send_poll(chat_id, question=question_text, options=poll_options, type="quiz", correct_option_id=correct_option)
+    poll_message = await client.send_poll(
+        chat_id,
+        question=question_text,
+        options=poll_options,
+        type="quiz",
+        correct_option_id=correct_option
+    )
 
     if explanation:
-        # Wait for 30 seconds
-        await asyncio.sleep(30)
-
-        # Send the explanation as a message
+        await asyncio.sleep(30)  # Wait for 30 seconds
         await client.send_message(chat_id, explanation)
 
-    return poll_message
-
-# Function to send quiz questions at intervals
-async def send_quiz_questions():
-    async with app:
-        for question in questions:
-            await send_question(app, chat_id, question)
-            await asyncio.sleep(10)  # Wait for 10 seconds before sending the next question
-
-# Call the function to send quiz questions
-asyncio.run(send_quiz_questions())
