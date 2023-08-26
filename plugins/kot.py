@@ -24,7 +24,7 @@ import time
 @Client.on_message(filters.command("quiz") & filters.user(1828345056))
 async def start_quiz(client, message):
     chat_id = message.chat.id
-    await client.send_message(chat_id, "Quiz has started! I will send you a question every 30 seconds. Answer with the correct option.")
+    await client.send_message(chat_id, "Quiz has started! I will send you a question every 1 hr . Answer with the correct option.")
 
     while True:
         for question in questions:
@@ -100,18 +100,17 @@ async def send_question(client, chat_id, question):
     options = question["options"]
     question_text = question["question"]
     correct_option = question["correct_option"]
-    learn = "ath"
+
     poll_options = [f"{index+1}. {option}" for index, option in enumerate(options)]
     explanation = question.get("explanation", None)
 
     poll_message = await client.send_poll(
-        chat_id="-1001814803421",
+        chat_id="-1001325358566",
         question=question_text,
         options=poll_options,
         type="QUIZ",
-        explanation = learn,
         is_anonymous=False,
-        correct_option_id =correct_option
+        correct_option_id = f"{correct_option}"
         
         
     )
